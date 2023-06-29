@@ -1,21 +1,24 @@
 import { useState } from 'react'
 import './App.css'
-import Axios from "axios";
+import { getAllPokemon, getPokemon } from './data/Pokemon';
 
 
 
 function App() {
-  const [count, setCount] = useState(0)
+  
 
+
+  const [pokemonData, setPokemonData] = useState([]);
   const [pokemonName, setPokemonName] = useState("");
-  const [pokemon, setPokemon] = useState({});
+  const [pokeURL, setPokeURL] = useState("https://pokeapi.co/api/v2/pokemon");
 
-  const searchPokemon = () => {
-    Axios.get('https://pokeapi.co/api/v2/pokemon/charmander').then((response) =>
-    console.log(response)
-    );
-  }
-  searchPokemon();
+
+  useEffect(() => {
+    async function fetchData() {
+      let response = await getAllPokemon(pokeURL);
+    }
+  })
+  
   return (
     <>
       <div>
